@@ -144,6 +144,9 @@ export interface WorkerOptions extends QueueBaseOptions {
    * @default false
    */
   useWorkerThreads?: boolean;
+
+  checkin?: () => number;
+  register?: () => number;
 }
 
 export interface GetNextJobOptions {

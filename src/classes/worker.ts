@@ -446,6 +446,12 @@ export class Worker<
         ) {
           const token = `${this.id}:${tokenPostfix++}`;
 
+          // No this.waiting at this point
+          // Also no runnable ones since either has limitUntil or has numTotal == 0
+          // Place to checkin
+          if (this.opts.checkin)
+            this.opts.checkin()
+
           const fetchedJob = this.retryIfFailed<void | Job<
             DataType,
             ResultType,
